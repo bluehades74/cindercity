@@ -67,8 +67,8 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Player1Position: {r: 5.987873, g: -7.1335917, b: 0, a: 0}
-    - _Player2Position: {r: 6.4425097, g: -6.2856207, b: 0, a: 0}
+    - _Player1Position: {r: 15.999998, g: 16.99, b: 0, a: 0}
+    - _Player2Position: {r: -17.639969, g: 0.81427, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
