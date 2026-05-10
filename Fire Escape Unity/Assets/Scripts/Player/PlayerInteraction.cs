@@ -66,7 +66,7 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
-        
+        CharacterEvents.PlayerSharedKeyPress.Invoke('E', gameObject.name);
     }
 
     private void OnPause()

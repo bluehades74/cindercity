@@ -37,7 +37,7 @@ public class Dialogue : MonoBehaviour
         if (linesOnLoad.Length == 0) return;
         // We can put this into a separate function for the input system
         // Looks for left mouse button down to do either
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Submit"))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             string plaintext = lines[index];
             plaintext = plaintext.Replace(pauseChar.ToString(), "");
@@ -92,6 +92,37 @@ public class Dialogue : MonoBehaviour
         else
         {
             dialogueBox.SetActive(false);
+        }
+    }
+
+    private void OnEnable()
+    {
+        CharacterEvents.PlayerSharedKeyPress += TrySkip;
+    }
+
+    private void OnDisable()
+    {
+        CharacterEvents.PlayerSharedKeyPress -= TrySkip;
+    }
+
+    private void TrySkip(char key, string playerName)
+    {
+
+        if (key == 'Q')
+        {
+            string plaintext = lines[index];
+            plaintext = plaintext.Replace(pauseChar.ToString(), "");
+            // 1. jump to next line/ close text box
+            if (textComponent.text == plaintext)
+            {
+                NextLine();
+            }
+            else
+            {
+                // 2. instant print text
+                StopAllCoroutines();
+                textComponent.text = plaintext;
+            }
         }
     }
 }
