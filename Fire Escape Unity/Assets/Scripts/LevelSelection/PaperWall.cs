@@ -56,7 +56,7 @@ public class PaperWall : MonoBehaviour
         // If the Escape key is pressed....
         if (levelSelectUI.activeInHierarchy == true)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Cancel"))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 // Then close the level select UI
                 levelSelectUI.SetActive(false);
@@ -91,11 +91,13 @@ public class PaperWall : MonoBehaviour
     private void OnEnable()
     {
         CharacterEvents.PlayerSharedKeyPress += TryOpen;
+        CharacterEvents.PlayerSharedKeyPress += TryClose;
     }
 
     private void OnDisable()
     {
         CharacterEvents.PlayerSharedKeyPress -= TryOpen;
+        CharacterEvents.PlayerSharedKeyPress -= TryClose;
     }
 
     private void TryOpen(char key, string playerName)
@@ -119,6 +121,16 @@ public class PaperWall : MonoBehaviour
             canvasManager.Active = true;
             Invoke("Controller", 0.05f);
             //GetComponent<ControllerUI>().MoveToElement();
+        }
+    }
+
+    private void TryClose(char key, string playerName)
+    {
+
+        if (key == 'E')
+        {
+            levelSelectUI.SetActive(false);
+            GetComponent<ControllerUI>().SetSelectedToNULL();
         }
     }
 }
